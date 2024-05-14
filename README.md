@@ -59,16 +59,16 @@ List the key features or functionalities of the application. This can include th
 
 ## Usage
 
-- Create new User: `POST /users/`
+- Create new User: `POST /users/create_user`
 
-- List All Users: `GET /users/`
+- List All Users: `GET /users/all_users`
 
 - Retrieve a list of users with optional pagination. 
-  Get User by ID: `GET /users/{user_id}`
+  Get User by ID: `GET /users/get_user/{user_id}`
 
-- Create Item for User: `POST /users/{user_id}/items/`
+- Update User: `POST /users/update_user/{user_id}`
 
-- List Items: `GET /items/`
+- Delete User: `DELETE /users/delete_user/{user_id}`
 
 
 ## Example
@@ -76,19 +76,21 @@ List the key features or functionalities of the application. This can include th
 Create a new user:
 
 ```bash
-curl -X POST "http://localhost:8000/users/" \
-     -H "Content-Type: application/json" \
-     -d '{
-        "username": "john_doe",
-        "password": "password123hash"
-     }'
+curl -X 'POST' \
+      'http://127.0.0.1:8000/user/create_user' \
+      -H 'accept: application/json' \
+      -H 'Content-Type: application/json' \
+      -d '{
+      "email": "xyz@gmail.com",
+      "password": "xyz123"
+    }'
  ```
 	 
 List All Users:
 
 ```bash
 curl -X 'GET' \
-  'http://127.0.0.1:8000/users/?skip=0&limit=100' \
+  'http://127.0.0.1:8000/user/all_users' \
   -H 'accept: application/json'
  ```
   
@@ -96,28 +98,28 @@ Retrieve a list of users with optional pagination. Get User by ID:
 
 ```bash
 curl -X 'GET' \
-  'http://127.0.0.1:8000/users/1' \
+  'http://127.0.0.1:8000/user/get_user/1' \
   -H 'accept: application/json'
  ```
 
-Create Item for User:
+Update User:
 
 ```bash
-curl -X 'POST' \
-  'http://127.0.0.1:8000/users/1/items/' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "title": "ABC",
-  "description": "XYZ"
-}'
+curl -X 'PUT' \
+      'http://127.0.0.1:8000/users/update_user/4' \
+      -H 'accept: application/json' \
+      -H 'Content-Type: application/json' \
+      -d '{
+      "email": "xyz123@gmail.com",
+      "password": "xyz123"
+    }'
  ```
 
-List Items for User:
+Delete User:
 
 ```bash
-curl -X 'GET' \
-  'http://127.0.0.1:8000/items/?skip=0&limit=100' \
+curl -X 'DELETE' \
+  'http://127.0.0.1:8000/users/delete_user/4' \
   -H 'accept: application/json'
  ```
 
