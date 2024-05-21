@@ -4,7 +4,9 @@ from sqlalchemy.orm import sessionmaker
 
 # Server=localhost;Database=master;Trusted_Connection=True;
 
-SQLALCHEMY_DATABASE_URL = "mssql+pyodbc://localhost/master?driver=ODBC+Driver+17+for+SQL+Server"
+# SQLALCHEMY_DATABASE_URL = "mssql+pyodbc://localhost/master?driver=ODBC+Driver+17+for+SQL+Server"
+
+SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 
 
 engine = create_engine(
